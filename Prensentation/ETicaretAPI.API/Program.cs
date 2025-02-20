@@ -1,8 +1,12 @@
-using ETicaretAPI.Persistence;
+﻿using ETicaretAPI.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddEndpointsApiExplorer();
+
+builder.Services.AddCors(options => options.AddDefaultPolicy(policy => 
+    policy.WithOrigins("http://localhost:4200", "https://localhost:4200").AllowAnyHeader().AllowAnyMethod()  //hangi originden gelen isteklere izin vereceğimizi ayarladık
+));
 
 builder.Services.AddSwaggerGen();
 
@@ -26,6 +30,8 @@ if (app.Environment.IsDevelopment())
     });
     app.MapOpenApi();
 }
+
+app.UseCors();
 
 app.UseHttpsRedirection();
 
