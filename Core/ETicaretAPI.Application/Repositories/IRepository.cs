@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ETicaretAPI.Application.Repositories
 {
-    public interface IRepository<T> where T : BaseEntity //BaseEntity'den türeyen classlar alacak
+    public interface IRepository<T> where T : BaseEntity //T türü BaseEntity'den türemiş olmak zorunda
     {
         DbSet<T> Table { get; }
     }
