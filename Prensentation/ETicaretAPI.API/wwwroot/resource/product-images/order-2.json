@@ -1,0 +1,29 @@
+{
+  "user": {
+    "id": 01,
+    "name": "Batman",
+    "age": 36,
+    "city": "Gotham",
+    "hobbies": ["bats", "flying", "dark"],
+    "active": true
+  },
+  "products": [
+    {
+      "productId": 101,
+      "name": "Batmobile",
+      "price": 29999999999.99,
+      "inStock": true
+    },
+    {
+      "productId": 102,
+      "name": "Batcave",
+      "price": 99999999999999999999999.50,
+      "inStock": false
+    }
+  ],
+  "order": {
+    "orderNumber": "A45678",
+    "date": "2025-03-23",
+    "paymentMethod": "Cash"
+  }
+}
