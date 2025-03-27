@@ -1,6 +1,7 @@
 ﻿using ETicaretAPI.Application.Validators.Products;
 using ETicaretAPI.Infrastructure;
 using ETicaretAPI.Infrastructure.Filters;
+using ETicaretAPI.Infrastructure.Services.Storage.Local;
 using ETicaretAPI.Persistence;
 using FluentValidation;
 using FluentValidation.AspNetCore;
@@ -19,6 +20,10 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddPersistenceServices();
 
 builder.Services.AddInfrastructureServices();
+
+//builder.Services.AddStrorage(StorageType.Local);
+builder.Services.AddStorage<LocalStorage>();  //local storage'a göre çalışacak
+//builder.Services.AddStorage(ETicaretAPI.Infrastructure.Enums.StorageType.Azure);
 
 builder.Services.AddControllers(options => options.Filters.Add<ValidationFilter>())
     .AddFluentValidation(configuration => configuration.RegisterValidatorsFromAssemblyContaining<CreateProductValidator>()).ConfigureApiBehaviorOptions(options => options.SuppressModelStateInvalidFilter = true);
