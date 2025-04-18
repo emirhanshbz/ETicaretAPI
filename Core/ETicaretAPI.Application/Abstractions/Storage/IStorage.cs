@@ -9,6 +9,6 @@ namespace ETicaretAPI.Application.Abstractions.Storage
         Task DeleteAsync(string pathOrContainerName, string fileName);
 
         List<string> GetFiles(string pathOrContainerName);
-        bool hasFile(string pathOrContainerName, string fileName);
+        bool HasFile(string pathOrContainerName, string fileName);
     }
 }

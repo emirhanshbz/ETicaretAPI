@@ -5,7 +5,7 @@ using System.IO;
 
 namespace ETicaretAPI.Infrastructure.Services.Storage.Local
 {
-    public class LocalStorage : ILocalStorage
+    public class LocalStorage : Storage, ILocalStorage
     {
 
         readonly IWebHostEnvironment _webHostEnvironment;
@@ -23,8 +23,9 @@ namespace ETicaretAPI.Infrastructure.Services.Storage.Local
             return directory.GetFiles().Select(f => f.Name).ToList();
         }
 
-        public bool hasFile(string path, string fileName)
+        public bool HasFile(string path, string fileName)
             => File.Exists($"{path}\\{fileName}");
+
         async Task<bool> CopyFileAsync(string path, IFormFile file)
         {
             try
@@ -54,9 +55,10 @@ namespace ETicaretAPI.Infrastructure.Services.Storage.Local
 
             foreach (IFormFile file in files)
             {
-                await CopyFileAsync($"{uploadPath}\\{file.Name}", file);
-                datas.Add((file.Name, $"{path}\\{file.Name}"));
+                string fileNewName = await FileRenameAsync(uploadPath, file.Name, HasFile);
 
+                await CopyFileAsync($"{uploadPath}\\{fileNewName}", file);
+                datas.Add((fileNewName, $"{path}\\{fileNewName}"));
             }
 
             return datas;

@@ -1,9 +1,9 @@
 ﻿using ETicaretAPI.Application.Validators.Products;
 using ETicaretAPI.Infrastructure;
 using ETicaretAPI.Infrastructure.Filters;
+using ETicaretAPI.Infrastructure.Services.Storage.Azure;
 using ETicaretAPI.Infrastructure.Services.Storage.Local;
 using ETicaretAPI.Persistence;
-using FluentValidation;
 using FluentValidation.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -22,7 +22,8 @@ builder.Services.AddPersistenceServices();
 builder.Services.AddInfrastructureServices();
 
 //builder.Services.AddStrorage(StorageType.Local);
-builder.Services.AddStorage<LocalStorage>();  //local storage'a göre çalışacak
+//builder.Services.AddStorage<LocalStorage>();  //local storage'a göre çalışacak
+builder.Services.AddStorage<AzureStorage>();
 //builder.Services.AddStorage(ETicaretAPI.Infrastructure.Enums.StorageType.Azure);
 
 builder.Services.AddControllers(options => options.Filters.Add<ValidationFilter>())
