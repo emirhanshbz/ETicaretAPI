@@ -21,10 +21,10 @@ builder.Services.AddPersistenceServices();
 
 builder.Services.AddInfrastructureServices();
 
-//builder.Services.AddStrorage(StorageType.Local);
+
 //builder.Services.AddStorage<LocalStorage>();  //local storage'a göre çalışacak
 builder.Services.AddStorage<AzureStorage>();
-//builder.Services.AddStorage(ETicaretAPI.Infrastructure.Enums.StorageType.Azure);
+
 
 builder.Services.AddControllers(options => options.Filters.Add<ValidationFilter>())
     .AddFluentValidation(configuration => configuration.RegisterValidatorsFromAssemblyContaining<CreateProductValidator>()).ConfigureApiBehaviorOptions(options => options.SuppressModelStateInvalidFilter = true);
