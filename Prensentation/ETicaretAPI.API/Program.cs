@@ -1,4 +1,5 @@
-﻿using ETicaretAPI.Application.Validators.Products;
+﻿using ETicaretAPI.Application;
+using ETicaretAPI.Application.Validators.Products;
 using ETicaretAPI.Infrastructure;
 using ETicaretAPI.Infrastructure.Filters;
 using ETicaretAPI.Infrastructure.Services.Storage.Azure;
@@ -15,11 +16,14 @@ builder.Services.AddCors(options => options.AddDefaultPolicy(policy =>
 ));
 
 
+
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddPersistenceServices();
 
 builder.Services.AddInfrastructureServices();
+
+builder.Services.AddApplicationServices();
 
 
 //builder.Services.AddStorage<LocalStorage>();  //local storage'a göre çalışacak
