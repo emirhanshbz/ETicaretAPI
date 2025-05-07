@@ -3,6 +3,7 @@ using ETicaretAPI.Persistence.Contexts;
 using Microsoft.Extensions.DependencyInjection;
 using ETicaretAPI.Application.Repositories;
 using ETicaretAPI.Persistence.Repositories;
+using ETicaretAPI.Domain.Entities.Identity;
 //IoC Container
 //onion mimarisinde katmanlar arasında bir şey göndermek için ServiceRegistration sınıfı kullanılır.
 namespace ETicaretAPI.Persistence
@@ -12,6 +13,8 @@ namespace ETicaretAPI.Persistence
         public static void AddPersistenceServices(this IServiceCollection services)
         {
             services.AddDbContext<ETicaretAPIDbContext>(options => options.UseNpgsql(Configuration.ConnectionString)); //connection string
+            services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<ETicaretAPIDbContext>();
+
             services.AddScoped<ICustomerReadRepository, CustomerReadRepository>();
             services.AddScoped<ICustomerWriteRepository, CustomerWriteRepository>();
             services.AddScoped<IOrderReadRepository, OrderReadRepository>();
