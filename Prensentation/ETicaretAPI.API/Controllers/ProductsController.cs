@@ -10,14 +10,13 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 
-//test amaçlı
+
 namespace ETicaretAPI.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     public class ProductsController : ControllerBase
     {
-
 
         readonly IMediator _mediator;
 

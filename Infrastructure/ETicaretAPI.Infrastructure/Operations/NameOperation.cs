@@ -16,8 +16,8 @@ namespace ETicaretAPI.Infrastructure.Operations
                         .Replace("ê", "e").Replace("ä", "a").Replace("ë", "e")
                         .Replace("ï", "i").Replace("ô", "o").Replace("à", "a")
                         .Replace("è", "e"),
-                    "[^a-z0-9-]", "-"), // Özel karakterleri kaldır, sadece a-z, 0-9 ve - bırak
-                "-{2,}", "-") // Birden fazla tireyi tek bir tire yap
-                .Trim('-'); // Baş ve sondaki tireleri temizle
+                    "[^a-z0-9-]", "-"), 
+                "-{2,}", "-") 
+                .Trim('-');
     }
 }
