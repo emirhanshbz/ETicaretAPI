@@ -1,6 +1,7 @@
 ﻿using ETicaretAPI.Application.Repositories;
 using P = ETicaretAPI.Domain.Entities;
 using MediatR;
+using Microsoft.Extensions.Logging;
 
 namespace ETicaretAPI.Application.Features.Commands.Product.UpdateProduct
 {
@@ -8,7 +9,6 @@ namespace ETicaretAPI.Application.Features.Commands.Product.UpdateProduct
     {
         readonly IProductReadRepository _productReadRepository;
         readonly IProductWriteRepository _productWriteRepository;
-
         public UpdateProductCommandHandler(IProductWriteRepository productWriteRepository, IProductReadRepository productReadRepository)
         {
             _productWriteRepository = productWriteRepository;
