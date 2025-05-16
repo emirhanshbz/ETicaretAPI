@@ -7,6 +7,7 @@ using ETicaretAPI.Infrastructure.Filters;
 using ETicaretAPI.Infrastructure.Services.Storage.Azure;
 using ETicaretAPI.Infrastructure.Services.Storage.Local;
 using ETicaretAPI.Persistence;
+using ETicaretAPI.SignalR;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.HttpLogging;
@@ -23,7 +24,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddCors(options => options.AddDefaultPolicy(policy => 
-    policy.WithOrigins("http://localhost:4200", "https://localhost:4200").AllowAnyHeader().AllowAnyMethod()  //hangi originden gelen isteklere izin vereceğimizi ayarladık
+    policy.WithOrigins("http://localhost:4200", "https://localhost:4200")
+    .AllowAnyHeader()
+    .AllowAnyMethod()
+    .AllowCredentials()  //hangi originden gelen isteklere izin vereceğimizi ayarladık
 ));
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -54,6 +58,8 @@ builder.Services.AddPersistenceServices();
 builder.Services.AddInfrastructureServices();
 
 builder.Services.AddApplicationServices();
+
+builder.Services.AddSignalRServices();
 
 
 //builder.Services.AddStorage<LocalStorage>();  //local storage'a göre çalışacak
@@ -139,5 +145,7 @@ app.Use(async (context, next) =>
 });
 
 app.MapControllers();
+
+app.MapHubs();
 
 app.Run();

@@ -53,7 +53,7 @@ namespace ETicaretAPI.Persistence.Services
                 await _userManager.AddLoginAsync(user, info);  //AspNetUserLogins
 
                 Token token = _tokenHandler.CreateAccessToken(accessTokenLifeTime, user);
-                await _userService.UpdateRefreshToken(token.RefreshToken, user, token.Expiration, 10);
+                await _userService.UpdateRefreshToken(token.RefreshToken, user, token.Expiration, 1200);
                 return token;
             }
 
@@ -91,7 +91,7 @@ namespace ETicaretAPI.Persistence.Services
             if (result.Succeeded) //Authentaication başarılı
             {
                 Token token = _tokenHandler.CreateAccessToken(accessTokenLifeTime, user);
-                await _userService.UpdateRefreshToken(token.RefreshToken, user, token.Expiration, 20);
+                await _userService.UpdateRefreshToken(token.RefreshToken, user, token.Expiration, 300);
                 return token;
             }
 
@@ -103,8 +103,8 @@ namespace ETicaretAPI.Persistence.Services
             AppUser? user = await _userManager.Users.FirstOrDefaultAsync(u => u.RefreshToken == refreshToken);
             if (user != null && user?.RefreshTokenEndDate > DateTime.UtcNow)
             {
-                Token token = _tokenHandler.CreateAccessToken(15, user);
-                await _userService.UpdateRefreshToken(token.RefreshToken, user, token.Expiration, 15);
+                Token token = _tokenHandler.CreateAccessToken(900, user);
+                await _userService.UpdateRefreshToken(token.RefreshToken, user, token.Expiration, 300);
                 return token;
             }
             else
