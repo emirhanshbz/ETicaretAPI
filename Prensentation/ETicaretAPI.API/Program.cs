@@ -50,6 +50,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             NameClaimType = ClaimTypes.Name  //JWT üzerinde Name Claim'ine karşılık gelen değeri User.Identity.Name propertysinden elde edebiliriiz.
         };
     });
+builder.Services.AddHttpContextAccessor(); //Cilent'tan gelen request neticesinde oluşturulan HttpContext nesnesi katmanlardaki classlar üzerinden(business logic) erişebilmemizi sağlayan bir servistir
 
 builder.Services.AddSwaggerGen();
 
