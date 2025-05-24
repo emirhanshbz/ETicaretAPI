@@ -17,5 +17,6 @@ namespace ETicaretAPI.Domain.Entities
         public Basket Basket { get; set; }
         //public ICollection<Product> Products { get; set; } //bir order'ın birden fazla product'ı olabilir. çoka çok ilişki
         //public Customer Customer { get; set; }
+        public CompletedOrder CompletedOrder { get; set; }
     }
 }
