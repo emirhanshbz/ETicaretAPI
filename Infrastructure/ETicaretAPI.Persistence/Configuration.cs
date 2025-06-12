@@ -1,9 +1,4 @@
 ﻿using Microsoft.Extensions.Configuration;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ETicaretAPI.Persistence
 {
@@ -14,8 +9,18 @@ namespace ETicaretAPI.Persistence
             get
             {
                 ConfigurationManager configurationManager = new();
-                configurationManager.SetBasePath(Path.Combine("C:\\Users\\Emirhan\\Desktop\\ETicaretUygulamasi\\ETicaretAPI\\Prensentation\\ETicaretAPI.API"));
-                configurationManager.AddJsonFile("appsettings.json");
+
+                //configurationManager.SetBasePath(Path.Combine("C:\\Users\\Emirhan\\Desktop\\ETicaretUygulamasi\\ETicaretAPI\\Prensentation\\ETicaretAPI.API"));
+
+                try
+                {
+                    configurationManager.SetBasePath(Path.Combine(Directory.GetCurrentDirectory()));
+                    configurationManager.AddJsonFile("appsettings.json");
+                }
+                catch
+                {
+                    configurationManager.AddJsonFile("appsettings.Production.json");
+                }
 
                 return configurationManager.GetConnectionString("PostgreSQL");
             }
